@@ -12,14 +12,14 @@ using TaskBoardApp.Data;
 namespace TaskBoardApp.Migrations
 {
     [DbContext(typeof(TaskBoardAppDbContext))]
-    [Migration("20221230141648_CrateDatabase")]
-    partial class CrateDatabase
+    [Migration("20221230164708_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.10")
+                .HasAnnotation("ProductVersion", "6.0.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -248,6 +248,23 @@ namespace TaskBoardApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Boards");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Open"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "In Progres"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Done"
+                        });
                 });
 
             modelBuilder.Entity("TaskBoardApp.Data.Entities.Task", b =>
@@ -285,13 +302,51 @@ namespace TaskBoardApp.Migrations
                     b.HasIndex("OwnerId");
 
                     b.ToTable("Tasks");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BoardId = 1,
+                            CreatedOn = new DateTime(2022, 11, 30, 18, 47, 8, 288, DateTimeKind.Local).AddTicks(2879),
+                            Description = "Learn using ASP.NET Core Identity",
+                            OwnerId = "4286c9ac-3d3a-4b3e-827e-673febf05d20",
+                            Title = "Prepare for ASP.NET Fundamentals exam"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BoardId = 3,
+                            CreatedOn = new DateTime(2022, 7, 30, 18, 47, 8, 288, DateTimeKind.Local).AddTicks(2929),
+                            Description = "Learn using EF Core and MS SQL Server Management Studio",
+                            OwnerId = "4286c9ac-3d3a-4b3e-827e-673febf05d20",
+                            Title = "ImproveEF Core skills"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BoardId = 2,
+                            CreatedOn = new DateTime(2022, 12, 20, 18, 47, 8, 288, DateTimeKind.Local).AddTicks(2934),
+                            Description = "Learn using ASP.NET Core Identity",
+                            OwnerId = "4286c9ac-3d3a-4b3e-827e-673febf05d20",
+                            Title = "Improve ASP.NET Core skills"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BoardId = 3,
+                            CreatedOn = new DateTime(2021, 12, 30, 18, 47, 8, 288, DateTimeKind.Local).AddTicks(2937),
+                            Description = "Prepare by solving old Mid and Final exams",
+                            OwnerId = "4286c9ac-3d3a-4b3e-827e-673febf05d20",
+                            Title = "Prepare for C# Fundamentals exam"
+                        });
                 });
 
             modelBuilder.Entity("TaskBoardApp.Data.Entities.User", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<string>("FirsName")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
@@ -302,6 +357,25 @@ namespace TaskBoardApp.Migrations
                         .HasColumnType("nvarchar(15)");
 
                     b.HasDiscriminator().HasValue("User");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "4286c9ac-3d3a-4b3e-827e-673febf05d20",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e94ea415-1ffe-44a5-87f6-a2573f851005",
+                            Email = "guest@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "GUEST@MAIL.COM",
+                            NormalizedUserName = "GUEST",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "7391dd0c-6336-48bd-addc-65ad57b01249",
+                            TwoFactorEnabled = false,
+                            UserName = "guest",
+                            FirstName = "GUEST",
+                            LastName = "User"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

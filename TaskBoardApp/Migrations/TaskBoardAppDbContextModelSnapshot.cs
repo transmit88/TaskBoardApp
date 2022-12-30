@@ -306,36 +306,36 @@ namespace TaskBoardApp.Migrations
                         {
                             Id = 1,
                             BoardId = 1,
-                            CreatedOn = new DateTime(2022, 11, 30, 17, 21, 19, 243, DateTimeKind.Local).AddTicks(9839),
+                            CreatedOn = new DateTime(2022, 11, 30, 18, 47, 8, 288, DateTimeKind.Local).AddTicks(2879),
                             Description = "Learn using ASP.NET Core Identity",
-                            OwnerId = "47f736f5-4ae8-41ca-909b-ef13336e8852",
+                            OwnerId = "4286c9ac-3d3a-4b3e-827e-673febf05d20",
                             Title = "Prepare for ASP.NET Fundamentals exam"
                         },
                         new
                         {
                             Id = 2,
                             BoardId = 3,
-                            CreatedOn = new DateTime(2022, 7, 30, 17, 21, 19, 243, DateTimeKind.Local).AddTicks(9894),
+                            CreatedOn = new DateTime(2022, 7, 30, 18, 47, 8, 288, DateTimeKind.Local).AddTicks(2929),
                             Description = "Learn using EF Core and MS SQL Server Management Studio",
-                            OwnerId = "47f736f5-4ae8-41ca-909b-ef13336e8852",
+                            OwnerId = "4286c9ac-3d3a-4b3e-827e-673febf05d20",
                             Title = "ImproveEF Core skills"
                         },
                         new
                         {
                             Id = 3,
                             BoardId = 2,
-                            CreatedOn = new DateTime(2022, 12, 20, 17, 21, 19, 243, DateTimeKind.Local).AddTicks(9898),
+                            CreatedOn = new DateTime(2022, 12, 20, 18, 47, 8, 288, DateTimeKind.Local).AddTicks(2934),
                             Description = "Learn using ASP.NET Core Identity",
-                            OwnerId = "47f736f5-4ae8-41ca-909b-ef13336e8852",
+                            OwnerId = "4286c9ac-3d3a-4b3e-827e-673febf05d20",
                             Title = "Improve ASP.NET Core skills"
                         },
                         new
                         {
                             Id = 4,
                             BoardId = 3,
-                            CreatedOn = new DateTime(2021, 12, 30, 17, 21, 19, 243, DateTimeKind.Local).AddTicks(9901),
+                            CreatedOn = new DateTime(2021, 12, 30, 18, 47, 8, 288, DateTimeKind.Local).AddTicks(2937),
                             Description = "Prepare by solving old Mid and Final exams",
-                            OwnerId = "47f736f5-4ae8-41ca-909b-ef13336e8852",
+                            OwnerId = "4286c9ac-3d3a-4b3e-827e-673febf05d20",
                             Title = "Prepare for C# Fundamentals exam"
                         });
                 });
@@ -359,16 +359,16 @@ namespace TaskBoardApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "47f736f5-4ae8-41ca-909b-ef13336e8852",
+                            Id = "4286c9ac-3d3a-4b3e-827e-673febf05d20",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "360e6c51-b128-48e5-b18d-4aa1d0b8fe9a",
+                            ConcurrencyStamp = "e94ea415-1ffe-44a5-87f6-a2573f851005",
                             Email = "guest@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "GUEST@MAIL.COM",
                             NormalizedUserName = "GUEST",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a2d5d0da-fcca-4cb7-8534-0acd253a32a3",
+                            SecurityStamp = "7391dd0c-6336-48bd-addc-65ad57b01249",
                             TwoFactorEnabled = false,
                             UserName = "guest",
                             FirstName = "GUEST",

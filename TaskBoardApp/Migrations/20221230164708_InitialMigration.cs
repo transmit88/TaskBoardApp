@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TaskBoardApp.Migrations
 {
-    public partial class CrateDatabase : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,7 +28,8 @@ namespace TaskBoardApp.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FirsName = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -81,7 +82,7 @@ namespace TaskBoardApp.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -102,7 +103,7 @@ namespace TaskBoardApp.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -122,7 +123,7 @@ namespace TaskBoardApp.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -140,13 +141,13 @@ namespace TaskBoardApp.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_AspNetUserRoles_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -166,7 +167,7 @@ namespace TaskBoardApp.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -189,13 +190,39 @@ namespace TaskBoardApp.Migrations
                         column: x => x.OwnerId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Tasks_Boards_BoardId",
                         column: x => x.BoardId,
                         principalTable: "Boards",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "4286c9ac-3d3a-4b3e-827e-673febf05d20", 0, "e94ea415-1ffe-44a5-87f6-a2573f851005", "User", "guest@gmail.com", false, "GUEST", "User", false, null, "GUEST@MAIL.COM", "GUEST", null, null, false, "7391dd0c-6336-48bd-addc-65ad57b01249", false, "guest" });
+
+            migrationBuilder.InsertData(
+                table: "Boards",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Open" },
+                    { 2, "In Progres" },
+                    { 3, "Done" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Tasks",
+                columns: new[] { "Id", "BoardId", "CreatedOn", "Description", "OwnerId", "Title" },
+                values: new object[,]
+                {
+                    { 1, 1, new DateTime(2022, 11, 30, 18, 47, 8, 288, DateTimeKind.Local).AddTicks(2879), "Learn using ASP.NET Core Identity", "4286c9ac-3d3a-4b3e-827e-673febf05d20", "Prepare for ASP.NET Fundamentals exam" },
+                    { 2, 3, new DateTime(2022, 7, 30, 18, 47, 8, 288, DateTimeKind.Local).AddTicks(2929), "Learn using EF Core and MS SQL Server Management Studio", "4286c9ac-3d3a-4b3e-827e-673febf05d20", "ImproveEF Core skills" },
+                    { 3, 2, new DateTime(2022, 12, 20, 18, 47, 8, 288, DateTimeKind.Local).AddTicks(2934), "Learn using ASP.NET Core Identity", "4286c9ac-3d3a-4b3e-827e-673febf05d20", "Improve ASP.NET Core skills" },
+                    { 4, 3, new DateTime(2021, 12, 30, 18, 47, 8, 288, DateTimeKind.Local).AddTicks(2937), "Prepare by solving old Mid and Final exams", "4286c9ac-3d3a-4b3e-827e-673febf05d20", "Prepare for C# Fundamentals exam" }
                 });
 
             migrationBuilder.CreateIndex(
