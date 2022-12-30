@@ -22,7 +22,7 @@ namespace TaskBoardApp.Data.Entities
 
         public int BoardId { get; set; }
         [ForeignKey(nameof(BoardId))]
-        public Board Board { get; set; }
+        public Board Board { get; init; }
 
         [Required]
         public string OwnerId { get; set; }
